@@ -4,9 +4,21 @@
 \name{mtblr}
 \alias{mtblr}
 \alias{mtblr-package}
-\title{A package to ...}
+\title{Tools to work with  mtbl files}
 \description{
-A package to ...
+mtbl is a C library implementation of the Sorted String Table (SSTable) data
+structure, based on the SSTable implementation in the open source Google
+LevelDB library. An SSTable is a file containing an immutable mapping of keys
+to values. Keys are stored in sorted order, with an index at the end of the
+file allowing keys to be located quickly.
+}
+\details{
+mtbl is not a database library. It does not provide an updateable key-value
+data store, but rather exposes primitives for creating, searching and merging
+SSTable files. Unlike databases which use the SSTable data structure
+internally as part of their data store, management of SSTable files --
+creation, merging, deletion, combining of search results from multiple
+SSTables -- is left to the discretion of the mtbl library user.
 }
 \author{
 Bob Rudis (@hrbrmstr)

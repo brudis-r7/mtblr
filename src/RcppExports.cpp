@@ -40,18 +40,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // mtbl_next
-List mtbl_next(XPtrIter x);
-RcppExport SEXP mtblr_mtbl_next(SEXP xSEXP) {
+List mtbl_next(XPtrIter x, size_t n);
+RcppExport SEXP mtblr_mtbl_next(SEXP xSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< XPtrIter >::type x(xSEXP);
-    __result = Rcpp::wrap(mtbl_next(x));
+    Rcpp::traits::input_parameter< size_t >::type n(nSEXP);
+    __result = Rcpp::wrap(mtbl_next(x, n));
     return __result;
 END_RCPP
 }
 // mtbl_keys
-std::vector < RawVector > mtbl_keys(XPtrReader x);
+std::vector < std::string > mtbl_keys(XPtrReader x);
 RcppExport SEXP mtblr_mtbl_keys(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -62,7 +63,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // mtbl_values
-std::vector < RawVector > mtbl_values(XPtrReader x);
+std::vector < std::string > mtbl_values(XPtrReader x);
 RcppExport SEXP mtblr_mtbl_values(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;

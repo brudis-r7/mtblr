@@ -1,14 +1,20 @@
 Package: mtblr
 Type: Package
-Title: mtblr title goes here
-Version: 0.1.0
+Title: Tools to work with 'mtbl' files
+Version: 0.1.0.9000
 Date: 2016-04-22
 Author: Bob Rudis (@hrbrmstr)
 Maintainer: Bob Rudis <bob@rudis.net>
-Description: mtblr description goes here
+Description: mtbl files are an implementation of the 'Sorted String Table' data
+    structure, based on the 'SSTable' implementation in the open source Google 'LevelDB'
+    library. An 'SSTable' is a file containing an immutable mapping of keys to values.
+    Keys are stored in sorted order, with an index at the end of the file allowing keys to
+    be located quickly. Tools to search and iterate over 'mtbl' files are provided.
 URL: http://github.com/hrbrmstr/mtblr
 BugReports: https://github.com/hrbrmstr/mtblr/issues
 License: AGPL
+SystemRequirements: mtbl C library
+NeedsCompilation: yes
 Suggests:
     testthat
 Depends:

@@ -62,6 +62,10 @@ mtbl_next <- function(x, n = 100L) {
 
 #' Return all the keys of an mtbl
 #'
+#' Remember that mtbl files are (in general) HUGE. This could take
+#' a while and have a very large result.
+#'
+#' @param x an mtbl file opened with \code{read_mtbl()}
 #' @export
 #' @examples
 #' mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
@@ -71,6 +75,9 @@ mtbl_keys <- function(x) {
 }
 
 #' Return all the values of an mtbl
+#'
+#' Remember that mtbl files are (in general) HUGE. This could take
+#' a while and have a very large result.
 #'
 #' @param x an mtbl file opened with \code{read_mtbl()}
 #' @export

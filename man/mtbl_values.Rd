@@ -10,7 +10,8 @@ mtbl_values(x)
 \item{x}{an mtbl file opened with \code{read_mtbl()}}
 }
 \description{
-Return all the values of an mtbl
+Remember that mtbl files are (in general) HUGE. This could take
+a while and have a very large result.
 }
 \examples{
 mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))

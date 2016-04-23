@@ -37,7 +37,7 @@ library(mtblr)
 packageVersion("mtblr")
 ```
 
-    ## [1] '0.1.0'
+    ## [1] '0.1.0.9000'
 
 ``` r
 mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
@@ -86,7 +86,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Apr 23 16:41:14 2016"
+    ## [1] "Sat Apr 23 16:47:10 2016"
 
 ``` r
 test_dir("tests/")

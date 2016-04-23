@@ -7,16 +7,16 @@
 
 The following functions are implemented:
 
--   `close_mtbl`: Close an mtbl file
--   `mtbl_get`: Retrieve a key/value pair from an mtbl by key
--   `mtbl_get_prefix`: Retrieve value(s) for a given key in an mtbl
--   `mtbl_iter_close`: Close an iterator when finished
--   `mtbl_keys`: Return all the keys of an mtbl
+-   `read_mtbl`: Open an mtbl file
 -   `mtbl_length`: Retrieve the number of records in an open mtbl file
+-   `close_mtbl`: Close an mtbl file
 -   `mtbl_map`: Start an iterator over an mtbl file
 -   `mtbl_next`: Iterate over mtbl file entries
+-   `mtbl_iter_close`: Close an iterator when finished
+-   `mtbl_get`: Retrieve a key/value pair from an mtbl by key
+-   `mtbl_get_prefix`: Retrieve value(s) for a given key in an mtbl
+-   `mtbl_keys`: Return all the keys of an mtbl
 -   `mtbl_values`: Return all the values of an mtbl
--   `read_mtbl`: Open an mtbl file
 
 The following data sets are included:
 
@@ -25,7 +25,7 @@ The following data sets are included:
 ### Installation
 
 ``` r
-devtools::install_github("hrbrmstr/mtblr")
+devtools::install_github("brudis-r7/mtblr")
 ```
 
 ### Usage
@@ -86,7 +86,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Apr 23 16:47:10 2016"
+    ## [1] "Sat Apr 23 17:40:51 2016"
 
 ``` r
 test_dir("tests/")

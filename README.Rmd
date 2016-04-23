@@ -1,0 +1,41 @@
+---
+output: rmarkdown::github_document
+---
+
+`mtblr` : ...
+
+The following functions are implemented:
+
+The following data sets are included:
+
+### Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/mtblr")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+options(width=120)
+```
+
+### Usage
+
+```{r}
+library(mtblr)
+
+# current verison
+packageVersion("mtblr")
+
+```
+
+### Test Results
+
+```{r}
+library(mtblr)
+library(testthat)
+
+date()
+
+test_dir("tests/")
+```
+

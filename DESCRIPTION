@@ -1,0 +1,20 @@
+Package: mtblr
+Type: Package
+Title: mtblr title goes here
+Version: 0.1.0
+Date: 2016-04-22
+Author: Bob Rudis (@hrbrmstr)
+Maintainer: Bob Rudis <bob@rudis.net>
+Description: mtblr description goes here
+URL: http://github.com/hrbrmstr/mtblr
+BugReports: https://github.com/hrbrmstr/mtblr/issues
+License: AGPL
+Suggests:
+    testthat
+Depends:
+    R (>= 3.0.0)
+Imports:
+    purrr,
+    Rcpp
+LinkingTo: Rcpp
+RoxygenNote: 5.0.1

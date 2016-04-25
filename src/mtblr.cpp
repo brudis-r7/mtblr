@@ -4,11 +4,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <wordexp.h>
 
 #include <mtbl.h>
 #include "mtblr_types.h"
 
 using namespace Rcpp;
+
+std::string path_expand(std::string path) {
+
+  char resolved_path[PATH_MAX];
+  wordexp_t expand_result;
+
+  wordexp(path.c_str(), &expand_result, 0);
+  realpath(expand_result.we_wordv[0], resolved_path);
+  wordfree(&expand_result);
+
+  return(std::string(resolved_path));
+
+}
 
 //' Open an mtbl file
 //'
@@ -19,8 +33,10 @@ using namespace Rcpp;
 //[[Rcpp::export]]
 XPtrReader read_mtbl(std::string path) {
 
-  struct mtbl_reader *r = mtbl_reader_init(path.c_str(), NULL);
+  struct mtbl_reader *r = mtbl_reader_init(path_expand(path).c_str(), NULL);
+  if (r==NULL) stop("Error opening file path");
   return(XPtrReader(r));
+
 }
 
 //' Retrieve the number of records in an open mtbl file

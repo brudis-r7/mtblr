@@ -22,6 +22,16 @@ The following data sets are included:
 
 -   `system.file("extdata/sample.mtbl", package="mtblr")`
 
+### News
+
+**0.2.0**
+
+-   Handles bad paths for `read_mtbl()`
+
+**0.1.0**
+
+-   Initial release
+
 ### Installation
 
 ``` r
@@ -37,7 +47,7 @@ library(mtblr)
 packageVersion("mtblr")
 ```
 
-    ## [1] '0.1.0.9000'
+    ## [1] '0.2.0.9000'
 
 ``` r
 mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
@@ -86,7 +96,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Apr 23 17:40:51 2016"
+    ## [1] "Mon Apr 25 11:09:07 2016"
 
 ``` r
 test_dir("tests/")

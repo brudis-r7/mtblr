@@ -33,6 +33,11 @@ The following data sets are included:
 
 - `system.file("extdata/sample.mtbl", package="mtblr")`
 
+### News
+
+```{r child='NEWS.md'}
+```
+
 ### Installation
 
 ```{r eval=FALSE}

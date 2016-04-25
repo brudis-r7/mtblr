@@ -11,19 +11,6 @@
 
 using namespace Rcpp;
 
-std::string path_expand(std::string path) {
-
-  char resolved_path[PATH_MAX];
-  wordexp_t expand_result;
-
-  wordexp(path.c_str(), &expand_result, 0);
-  realpath(expand_result.we_wordv[0], resolved_path);
-  wordfree(&expand_result);
-
-  return(std::string(resolved_path));
-
-}
-
 //' Open an mtbl file
 //'
 //' @param path full path to mtbl file
@@ -33,8 +20,10 @@ std::string path_expand(std::string path) {
 //[[Rcpp::export]]
 XPtrReader read_mtbl(std::string path) {
 
-  struct mtbl_reader *r = mtbl_reader_init(path_expand(path).c_str(), NULL);
-  if (r==NULL) stop("Error opening file path");
+  std::string fullPath(R_ExpandFileName(path.c_str()));
+
+  struct mtbl_reader *r = mtbl_reader_init(fullPath.c_str(), NULL);
+  if (r==NULL) stop("Cannot open file '%s'", path);
   return(XPtrReader(r));
 
 }

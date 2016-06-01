@@ -18,5 +18,6 @@
 #' @author Bob Rudis (@@hrbrmstr)
 #' @import purrr
 #' @useDynLib mtblr
+#' @import RcppProgress
 #' @importFrom Rcpp sourceCpp
 NULL

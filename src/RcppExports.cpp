@@ -63,7 +63,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // mtbl_values
-std::vector < std::string > mtbl_values(XPtrReader x);
+CharacterVector mtbl_values(XPtrReader x);
 RcppExport SEXP mtblr_mtbl_values(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -71,6 +71,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< XPtrReader >::type x(xSEXP);
     __result = Rcpp::wrap(mtbl_values(x));
     return __result;
+END_RCPP
+}
+// mtbl_export_values
+void mtbl_export_values(XPtrReader x, std::string path);
+RcppExport SEXP mtblr_mtbl_export_values(SEXP xSEXP, SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< XPtrReader >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    mtbl_export_values(x, path);
+    return R_NilValue;
 END_RCPP
 }
 // mtbl_get

@@ -28,6 +28,7 @@ The following functions are implemented:
 - `mtbl_get_prefix`: Retrieve value(s) for a given key in an mtbl
 - `mtbl_keys`: Return all the keys of an mtbl
 - `mtbl_values`: Return all the values of an mtbl
+- `mtbl_export_values`: Export mtbl values to a file
 
 The following data sets are included:
 

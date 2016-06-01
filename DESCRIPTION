@@ -1,8 +1,8 @@
 Package: mtblr
 Type: Package
 Title: Tools to work with 'mtbl' files
-Version: 0.2.0.9000
-Date: 2016-04-25
+Version: 0.3.0.9000
+Date: 2016-06-01
 Author: Bob Rudis (@hrbrmstr)
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: mtbl files are an implementation of the 'Sorted String Table' data
@@ -20,7 +20,7 @@ Suggests:
 Depends:
     R (>= 3.0.0)
 Imports:
-    purrr,
-    Rcpp
-LinkingTo: Rcpp
+    Rcpp,
+    RcppProgress
+LinkingTo: Rcpp, RcppProgress
 RoxygenNote: 5.0.1

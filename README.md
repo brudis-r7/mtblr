@@ -17,12 +17,18 @@ The following functions are implemented:
 -   `mtbl_get_prefix`: Retrieve value(s) for a given key in an mtbl
 -   `mtbl_keys`: Return all the keys of an mtbl
 -   `mtbl_values`: Return all the values of an mtbl
+-   `mtbl_export_values`: Export mtbl values to a file
 
 The following data sets are included:
 
 -   `system.file("extdata/sample.mtbl", package="mtblr")`
 
 ### News
+
+**0.3.0**
+
+-   `mtbl_export_values()` to shunt values from mtbl files to a file
+-   Progress bars!
 
 **0.2.0**
 
@@ -47,7 +53,7 @@ library(mtblr)
 packageVersion("mtblr")
 ```
 
-    ## [1] '0.2.0.9000'
+    ## [1] '0.3.0.9000'
 
 ``` r
 mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
@@ -96,7 +102,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Apr 25 11:09:07 2016"
+    ## [1] "Wed Jun  1 15:18:18 2016"
 
 ``` r
 test_dir("tests/")

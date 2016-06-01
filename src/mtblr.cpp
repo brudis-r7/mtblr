@@ -1,3 +1,6 @@
+// [[Rcpp::depends(RcppProgress)]]
+#include <progress.hpp>
+
 #include <Rcpp.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -5,6 +8,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <wordexp.h>
+#include <fstream>
+#include <iostream>
 
 #include <mtbl.h>
 #include "mtblr_types.h"
@@ -154,7 +159,7 @@ std::vector < std::string > mtbl_keys(XPtrReader x) {
 //' head(mtbl_values(mtbl))
 //' @export
 //[[Rcpp::export]]
-std::vector < std::string > mtbl_values(XPtrReader x) {
+CharacterVector mtbl_values(XPtrReader x) {
 
   struct mtbl_reader *r = x.get();
   struct mtbl_iter *it = mtbl_source_iter(mtbl_reader_source(r));
@@ -167,13 +172,67 @@ std::vector < std::string > mtbl_values(XPtrReader x) {
   const uint8_t *key, *val;
   size_t len_key, len_val;
 
+  Progress p(count_entries, true);
+
   while (mtbl_iter_next(it, &key, &len_key, &val, &len_val)) {
+    if ((i % 10000) == 0) {
+      if (Progress::check_abort()) return(R_NilValue);
+    }
     output[i++] = std::string(val, val+len_val);
+    p.increment();
   }
 
   mtbl_iter_destroy(&it);
 
-  return(output);
+  return(wrap(output));
+
+}
+
+//' Export mtbl \emph{values} to a file
+//'
+//' Given an \code{mtbl} file opened with \code{read_mtbl()}, this function
+//' will export each value from the mtbl key/value pair to \code{path} with
+//' each value record terminated by a newline.
+//'
+//' The use-case driving this function is exporting the value side of
+//' Project Sonar mtbl files since it would help in processing \code{jq}
+//' pipelines.
+//'
+//' @param x an mtbl file opened with \code{read_mtbl()}
+//' @param path full path to output file
+//' @export
+//' @examples
+//' mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
+//' mtbl_export(mtbl, tempfile())
+//[[Rcpp::export]]
+void mtbl_export_values(XPtrReader x, std::string path) {
+
+  std::string fullPath(R_ExpandFileName(path.c_str()));
+
+  struct mtbl_reader *r = x.get();
+  struct mtbl_iter *it = mtbl_source_iter(mtbl_reader_source(r));
+  const struct mtbl_metadata *m = mtbl_reader_metadata(r);
+  uint64_t count_entries = mtbl_metadata_count_entries(m);
+
+  uint64_t i = 0;
+  const uint8_t *key, *val;
+  size_t len_key, len_val;
+
+  std::ofstream output(fullPath);
+
+  Progress p(count_entries, true);
+
+  while (mtbl_iter_next(it, &key, &len_key, &val, &len_val)) {
+    if ((i % 10000) == 0) {
+      if (Progress::check_abort()) return;
+    }
+    output << std::string(val, val+len_val);
+    output << "\n";
+    i++;
+    p.increment();
+  }
+
+  mtbl_iter_destroy(&it);
 
 }
 

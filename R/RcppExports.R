@@ -89,6 +89,26 @@ mtbl_values <- function(x) {
     .Call('mtblr_mtbl_values', PACKAGE = 'mtblr', x)
 }
 
+#' Export mtbl \emph{values} to a file
+#'
+#' Given an \code{mtbl} file opened with \code{read_mtbl()}, this function
+#' will export each value from the mtbl key/value pair to \code{path} with
+#' each value record terminated by a newline.
+#'
+#' The use-case driving this function is exporting the value side of
+#' Project Sonar mtbl files since it would help in processing \code{jq}
+#' pipelines.
+#'
+#' @param x an mtbl file opened with \code{read_mtbl()}
+#' @param path full path to output file
+#' @export
+#' @examples
+#' mtbl <- read_mtbl(system.file("extdata/sample.mtbl", package="mtblr"))
+#' mtbl_export(mtbl, tempfile())
+mtbl_export_values <- function(x, path) {
+    invisible(.Call('mtblr_mtbl_export_values', PACKAGE = 'mtblr', x, path))
+}
+
 #' Retrieve a key/value pair from an mtbl by key
 #'
 #' In theory there are no duplicates, but this still
